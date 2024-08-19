@@ -91,8 +91,8 @@ def index():
             results = [merge_data(results)]
             
             # Exportar a CSV
-            if request.form.get('export_csv'):
-                return export_to_csv(results, columns)
+            # if request.form.get('export_csv'):
+            #     return export_to_csv(results, columns)
             
             return render_template('index.html', results=results, zip=zip, list=list)
     if request.method == 'GET':
@@ -122,13 +122,13 @@ def merge_data(dict_list):
 
     return merged_data
 
-def export_to_csv(results, columns):
-    df = pd.DataFrame(results)
-    csv_buffer = io.StringIO()
-    df.to_csv(csv_buffer, index=False)
-    csv_buffer.seek(0)
+# def export_to_csv(results, columns):
+#     df = pd.DataFrame(results)
+#     csv_buffer = io.StringIO()
+#     df.to_csv(csv_buffer, index=False)
+#     csv_buffer.seek(0)
     
-    return send_file(io.BytesIO(csv_buffer.getvalue().encode()), attachment_filename='results.csv', as_attachment=True)
+#     return send_file(io.BytesIO(csv_buffer.getvalue().encode()), attachment_filename='results.csv', as_attachment=True)
 
 # @app.route('/csv', methods=['POST'])
 # def export_csv():
